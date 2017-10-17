@@ -1,6 +1,6 @@
 {
   "name": "calendar-date-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Component that presents a calendar with a set of selectable dates.",
   "main": "index.js",
   "scripts": {
