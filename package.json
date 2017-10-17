@@ -1,0 +1,23 @@
+{
+  "name": "calendar-date-picker",
+  "version": "1.0.0",
+  "description": "React Component that presents a calendar with a set of selectable dates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://www.github.com/mtostenson/calendar-date-picker.git"
+  },
+  "keywords": [
+    "Calendar",
+    "DatePicker",
+    "Date"
+  ],
+  "author": "Michael Tostenson",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "moment": "^2.19.1"
+  }
+}
