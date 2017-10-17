@@ -1,5 +1,5 @@
 # calendar-date-picker
-This React component provides a view that allows the user to select a single date from a set of available dates. The view contains a list of month calendars, where only months with available dates are displayed.
+This React Native component provides a view that allows the user to select a single date from a set of available dates. The view contains a list of month calendars, where only months with available dates are displayed.
 
 <img src="https://i.imgur.com/NASNKZ4.png" width="250">
 

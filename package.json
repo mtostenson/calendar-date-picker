@@ -1,7 +1,7 @@
 {
   "name": "calendar-date-picker",
-  "version": "1.0.2",
-  "description": "React Component that presents a calendar with a set of selectable dates.",
+  "version": "1.0.3",
+  "description": "React Native Component that presents a calendar with a set of selectable dates.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,7 @@
     "Calendar",
     "DatePicker",
     "Date",
-		"React"
+    "React Native"
   ],
   "author": "Michael Tostenson",
   "license": "Apache-2.0",
