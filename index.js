@@ -9,15 +9,16 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
-import styles from '../../../lib/styles';
 import moment from 'moment';
+
+const padding7 = 7;
 
 const componentStyles = StyleSheet.create({
     calendar: {
-        backgroundColor: styles.colors.white,
-        marginBottom: styles.measurements.gridSpace1,
-        marginHorizontal: styles.measurements.gridSpace1,
-        padding: styles.measurements.gridSpace1,
+        backgroundColor: 'white',
+        marginBottom: padding7,
+        marginHorizontal: padding7,
+        padding: padding7,
         elevation: 2,
         shadowColor: 'black',
         shadowOpacity: 0.15,
@@ -30,19 +31,27 @@ const componentStyles = StyleSheet.create({
     },
     date: {
         flex: 1,
-        padding: styles.measurements.gridSpace1,
+        padding: padding7,
         justifyContent: 'center',
         height: 44,
     },
     day: {
         flex: 1,
-        paddingBottom: styles.measurements.gridSpace1,
+        color: 'gray',
+        textAlign: 'center',
+        paddingBottom: padding7,
     },
     month: {
-        paddingBottom: styles.measurements.gridSpace1,
+        paddingBottom: padding7,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 24,
     },
     scrollView: {
-        paddingTop: styles.measurements.gridSpace1,
+        paddingTop: padding7,
+    },
+    flexRow: {
+        flexDirection: 'row',
     },
 });
 
@@ -103,30 +112,20 @@ export default class CalendarPicker extends Component {
                 }
                 rows.push(curRow);
             }
+            const daysOfWeek = [];
+            for (var i = 0; i < 7; i++) {
+                daysOfWeek.push(moment().isoWeekday(i).toString().substring(0, 2));
+            }
             return (
                 <View
                     key={first.month()}
                     style={componentStyles.calendar}
                 >
-                    <Text
-                        style={componentStyles.month}
-                        textAlign="center"
-                        weight="bold"
-                        size="large"
-                        color="primary"
-                    >
+                    <Text style={[componentStyles.month, { color: this.props.primaryColor }]}>
                         {moment.months(first.month())}
                     </Text>
-                    <View style={styles.elements.flexRow}>
-                        {[
-                            'Su',
-                            'Mo',
-                            'Tu',
-                            'We',
-                            'Th',
-                            'Fr',
-                            'Sa',
-                        ].map((day, index) => {
+                    <View style={componentStyles.flexRow}>
+                        {daysOfWeek.map((day, index) => {
                             return (
                                 <Text
                                     key={index}
@@ -142,11 +141,16 @@ export default class CalendarPicker extends Component {
                         return (
                             <View
                                 key={i}
-                                style={styles.elements.flexRow}
+                                style={componentStyles.flexRow}
                             >
                                 {row.map((date, j) => {
                                     if (date.date) {
                                         const isSelection = this.props.selection && date.date.isSame(this.props.selection);
+                                        const dateStyle = {
+                                            color: date.selectable ? date.isSelection ? 'red' : this.props.primaryColor : 'grey',
+                                            fontWeight: date.selectable ? 'bold' : 'normal',
+                                            textAlign: 'center',
+                                        }
                                         return (
                                             <TouchableOpacity
                                                 trackAction="calendarPickerDate"
@@ -155,11 +159,7 @@ export default class CalendarPicker extends Component {
                                                 style={componentStyles.date}
                                                 onPress={() => this.props.onSelectDate(date.date)}
                                             >
-                                                <Text
-                                                    color={date.selectable ? isSelection ? 'primary' : 'secondary' : 'grey'}
-                                                    weight={date.selectable ? 'bold' : 'normal'}
-                                                    textAlign="center"
-                                                >
+                                                <Text style={dateStyle}>
                                                     {date.date.date()}
                                                 </Text>
                                             </TouchableOpacity>
@@ -195,6 +195,9 @@ CalendarPicker.propTypes = {
     dates: PropTypes.array.isRequired,
     onSelectDate: PropTypes.func.isRequired,
     selection: PropTypes.object,
+    primaryColor: PropTypes.string,
 };
 
-CalendarPicker.defaultProps = {};
+CalendarPicker.defaultProps = {
+    primaryColor: 'firebrick',
+};
